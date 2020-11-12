@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sht.apimybatis.Mapper.UserMapper">
+    <resultMap id="UserInfo" type="com.sht.apimybatis.entity.User">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="email" property="email" />
+        <!--一对多，方式一-->
+        <collection property="goodsList" ofType="com.sht.apimybatis.entity.Goods" >
+            <id column="gid" property="id" />
+            <result column="name" property="name" />
+            <result column="intro" property="intro" />
+            <result column="price1" property="price1" />
+            <result column="images" property="images"/>
+
+                <collection property="commentList" ofType="com.sht.apimybatis.entity.Comment">
+                    <id column="commentid" property="commentid" />
+                    <result column="content" property="content" />
+                    <result column="userid" property="userid" />
+                </collection>
+        </collection>
+    </resultMap>
+
+    <select id="findById" parameterType="com.sht.apimybatis.entity.User" resultMap="UserInfo">
+        SELECT u.id, u.username,u.email, g.id as gid, g.name,g.intro,g.price1,g.images, c.commentid,c.content,c.userid
+        FROM user u
+        INNER JOIN goods g
+        ON u.id = g.userid
+        JOIN `comment` c
+        ON g.id = c.goodsid
+        order by u.id
+    </select>
+
+</mapper>

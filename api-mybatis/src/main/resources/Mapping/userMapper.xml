@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sht.apimybatis.Mapper.UserMapper">
+    
+    <resultMap id="userOfRole" type="com.sht.apimybatis.dto.UserDto">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="email" property="email" />
+
+        <collection property="roleList" ofType="com.sht.apimybatis.entity.Role">
+            <id column="id" property="id" />
+            <result column="roleName" property="role_name" />
+            <result column="roleIntro" property="role_intro" />
+        </collection>
+    </resultMap>
+
+    <select id="findUserRoles" resultMap="userOfRole" parameterType="int">
+        SELECT u.id ,u.username, u.email, r.*
+        FROM user u
+        join user_role ur
+        ON u.id = ur.user_id
+        join role r
+        on r.id = ur.role_id
+        where u.id = #{id};
+    </select>
+
+</mapper>
