@@ -26,9 +26,14 @@ public class UserController {
     @PostMapping("register")
     public ResponseEntity<JSONObject> register(@RequestBody UserDTO userDTO) {
         JSONObject jsonObject = new JSONObject();
-        if (userDTO.getUsername().trim().length() != usernameLength) {
+        if (userDTO.getUsername() == null || userDTO.getUsername().trim().length() != usernameLength) {
             jsonObject.put("code", 400);
             jsonObject.put("msg", "账号错误");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonObject);
+        }
+        if (!userService.checkEmailRule(userDTO.getEmail())){
+            jsonObject.put("code", 400);
+            jsonObject.put("msg", "邮箱格式错误");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonObject);
         }
         if (!userService.findByUsername(userDTO.getUsername().trim())){
@@ -44,7 +49,6 @@ public class UserController {
         user.setSendEmail(true);
         user.setFlag(false);
         int i = userService.save(user);
-        System.out.println("1111 "+i);
         jsonObject.put("code", 200);
         jsonObject.put("msg", "success");
         return ResponseEntity.ok(jsonObject);

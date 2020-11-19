@@ -18,8 +18,16 @@ class AutosubmitApplicationTests {
     private UserService userService;
 
     @Test
-    public void autoSubmit() {
+    public void autoSubmit() throws Exception {
         userService.autoSubmit();
+    }
+
+    @Test
+    public void testSendEmail() throws Exception {
+        User user = new User();
+        user.setEmail("785820791@qq.com");
+        user.setUsername("17610903150644");
+        userService.sendRegisterEmailCode(user, "成功");
     }
 
     @Test
