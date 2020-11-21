@@ -32,7 +32,9 @@ class AutosubmitApplicationTests {
 
     @Test
     void contextLoads() {
-        String token = autoSubmitService.getToken(new User("","17610807150143", "223913"));
+        User user = new User("","17610807150143", "22391");
+        user.setEmail("shenhongtao12@aliyun.com");
+        String token = autoSubmitService.getToken(user);
         System.out.println(token);
     }
 

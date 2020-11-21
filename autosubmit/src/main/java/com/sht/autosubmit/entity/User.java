@@ -1,6 +1,7 @@
 package com.sht.autosubmit.entity;
 
 import lombok.*;
+import org.springframework.validation.annotation.Validated;
 import tk.mybatis.mapper.annotation.KeySql;
 
 import javax.persistence.Id;

@@ -34,15 +34,20 @@ public class AutoSubmitService {
     public String getToken(User user) {
         String url = "https://stu.eurasia.edu/yqsb/login/in?zh="+ user.getUsername() +"&&mm=" + user.getPassword();
         RespDTO loginDTO = restTemplate.getForObject(url, RespDTO.class);
-        if (loginDTO.getSuccess()){
+        if (loginDTO != null && loginDTO.getSuccess()){
             return loginDTO.getToken();
         }else {
-            userService.deleteById(user.getId());
+            try {
+                userService.sendRegisterEmailCode(user, "失败,您可能修改了密码,请重新登录绑定");
+                userService.deleteById(user.getId());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return null;
         }
     }
 
-    public void autoSubmit(User user) {
+    public UserInfo autoSubmit(User user) {
         String token = getToken(user);
         if (token != null){
             HttpHeaders headers = new HttpHeaders();
@@ -58,6 +63,9 @@ public class AutoSubmitService {
             HttpEntity<Object> requestSave =  new HttpEntity<>(userInfo, headers);
             ResponseEntity<String> responseEntity = restTemplate.exchange("https://stu.eurasia.edu/yqsb/jkdj/save", HttpMethod.POST, requestSave, String.class, userInfo);
             LOGGER.info(responseEntity.toString());
+            return userInfo;
+        }else {
+            return null;
         }
     }
 }

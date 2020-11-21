@@ -1,6 +1,7 @@
 package com.sht.autosubmit.service;
 
 import com.sht.autosubmit.entity.User;
+import com.sht.autosubmit.entity.UserInfo;
 import com.sht.autosubmit.mapper.UserMapper;
 import com.sht.autosubmit.utils.EmailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +46,21 @@ public class UserService {
         return userMapper.insert(user);
     }
 
-    public boolean findByUsername(String username) {
+    public User findById(int id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        user.setPassword("******");
+        return user;
+    }
+
+    public User findByUsername(String username) {
         Example example = new Example(User.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("username", username);
-        return userMapper.selectOneByExample(example) == null;
+        User user = userMapper.selectOneByExample(example);
+        if (user != null) {
+            user.setPassword("******");
+        }
+        return user;
     }
 
     public void deleteById(Integer id) {
@@ -64,19 +75,38 @@ public class UserService {
         return userMapper.selectOneByExample(example);
     }
 
-    @Scheduled(cron = "10 * 0 * * ?")
-    public void autoSubmit() throws Exception {
+    public Integer update(User user) {
+        user.setPassword(null);
+        user.setName(null);
+        user.setUsername(null);
+        user.setFlag(null);
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Scheduled(cron = "10 1 0 * * ?")
+    public void autoSubmit()  {
         List<User> users = userMapper.selectAll();
         for (User user : users) {
             if (user.getMember() && !user.getFlag()) {
                 try {
-                    autoSubmitService.autoSubmit(user);
+                    UserInfo userInfo = autoSubmitService.autoSubmit(user);
                     user.setFlag(true);
+                    if (userInfo != null && user.getName() == null) {
+                        user.setName(userInfo.getXm());
+                    }
                     userMapper.updateByPrimaryKey(user);
-                    sendRegisterEmailCode(user, "成功");
+                    if (user.getEmail() != null && user.getSendEmail()) {
+                        sendRegisterEmailCode(user, "成功");
+                    }
                     Thread.sleep(100);
                 } catch (Exception e) {
-                    sendRegisterEmailCode(user, "失败");
+                    try {
+                        if (user.getEmail() != null) {
+                            sendRegisterEmailCode(user, "失败");
+                        }
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                    }
                 }
             }
         }
@@ -102,9 +132,10 @@ public class UserService {
     }
 
     public Boolean checkEmailRule(String email) {
-        if (email.matches("^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(value)")) {
+        if (email.matches("\\w+@\\w+(\\.\\w{2,3})*\\.\\w{2,3}")) {
             return false;
+        } else {
+            return true;
         }
-        return true;
     }
 }
