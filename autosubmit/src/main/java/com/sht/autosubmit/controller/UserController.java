@@ -2,7 +2,6 @@ package com.sht.autosubmit.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.sht.autosubmit.DTO.UserDTO;
-import com.sht.autosubmit.entity.Login;
 import com.sht.autosubmit.entity.User;
 import com.sht.autosubmit.service.AutoSubmitService;
 import com.sht.autosubmit.service.UserService;
@@ -51,33 +50,50 @@ public class UserController {
         user.setUsername(userDTO.getUsername().trim());
         user.setPassword(userDTO.getPassword().trim());
         user.setMember(true);
-        user.setSendEmail(true);
+        user.setSendEmail(false);
         user.setFlag(false);
         if (autoSubmitService.getToken(user) == null) {
             jsonObject.put("code", 400);
             jsonObject.put("msg", "账号或密码错误");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonObject);
         }
-        int i = userService.save(user);
+        userService.save(user);
+        User byUsername = userService.findByUsername(userDTO.getUsername());
+        byUsername.setPassword("******");
         jsonObject.put("code", 200);
         jsonObject.put("msg", "success");
-        jsonObject.put("data", userService.findByUsername(userDTO.getUsername()));
+        jsonObject.put("data", byUsername);
         return ResponseEntity.ok(jsonObject);
     }
 
     @PostMapping("update")
     public ResponseEntity<JSONObject> updateUserInfo(@RequestBody User user) {
         JSONObject jsonObject = new JSONObject();
-        if (user.getEmail() != null && userService.checkEmailRule(user.getEmail().trim())){
-            jsonObject.put("code", 400);
-            jsonObject.put("msg", "邮箱格式错误");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonObject);
+        if (user.getId() == null) {
+            jsonObject.put("code", 401);
+            jsonObject.put("msg", "请先登录");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(jsonObject);
         }
-        if (user.getSendEmail() && user.getEmail() == null){
+        User byId = userService.findById(user.getId());
+        if (byId == null) {
+            jsonObject.put("code", 401);
+            jsonObject.put("msg", "不存在该用户");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(jsonObject);
+        }
+        if (user.getEmail() != null ){
+            if (userService.checkEmailRule(user.getEmail().trim())) {
+                jsonObject.put("code", 400);
+                jsonObject.put("msg", "邮箱格式错误");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonObject);
+            }
+        }
+
+        if (user.getSendEmail() != null && user.getSendEmail() && byId.getEmail() == null){
             jsonObject.put("code", 400);
             jsonObject.put("msg", "邮箱不能为空");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonObject);
         }
+
         int i = userService.update(user);
         if (i != 1){
             jsonObject.put("code", 400);
@@ -85,7 +101,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonObject);
         }
         jsonObject.put("code", 200);
-        jsonObject.put("data", userService.findById(user.getId()));
+        jsonObject.put("msg", "success");
         return ResponseEntity.ok(jsonObject);
     }
 

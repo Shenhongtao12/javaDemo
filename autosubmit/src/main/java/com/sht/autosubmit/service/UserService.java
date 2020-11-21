@@ -56,11 +56,7 @@ public class UserService {
         Example example = new Example(User.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("username", username);
-        User user = userMapper.selectOneByExample(example);
-        if (user != null) {
-            user.setPassword("******");
-        }
-        return user;
+        return userMapper.selectOneByExample(example);
     }
 
     public void deleteById(Integer id) {
@@ -83,7 +79,10 @@ public class UserService {
         return userMapper.updateByPrimaryKeySelective(user);
     }
 
-    @Scheduled(cron = "10 1 0 * * ?")
+    /**
+     * 定时Job
+     */
+    @Scheduled(cron = "10 1 1 * * ?")
     public void autoSubmit()  {
         List<User> users = userMapper.selectAll();
         for (User user : users) {
@@ -112,7 +111,7 @@ public class UserService {
         }
     }
 
-    @Scheduled(cron = "* * 02 * * ?")
+    @Scheduled(cron = "10 1 02 * * ?")
     public void changeFlag() {
         List<User> users = userMapper.selectAll();
         for (User user : users) {
