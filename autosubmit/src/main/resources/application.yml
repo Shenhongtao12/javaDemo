@@ -10,6 +10,8 @@ spring:
     username: ${database.username}
     password: ${database.password}
     driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc:
+    dispatch-options-request: true
 #Email配置
 email:
   host-name: smtp.163.com  #服务地址，可以直接在web端登录，找到smtp服务看到，163邮箱默认开放25端口，可暂时不设置
