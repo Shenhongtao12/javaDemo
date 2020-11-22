@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
+
 @SpringBootTest(classes = AutosubmitApplication.class)
 class AutosubmitApplicationTests {
 
@@ -28,6 +30,7 @@ class AutosubmitApplicationTests {
         user.setEmail("785820791@qq.com");
         user.setUsername("17610903150644");
         userService.sendRegisterEmailCode(user, "成功");
+        System.out.println(new Date());
     }
 
     @Test

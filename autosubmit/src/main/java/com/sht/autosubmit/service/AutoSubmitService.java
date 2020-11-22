@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Aaron
  * @date 2020/11/17 20:23
@@ -47,7 +50,7 @@ public class AutoSubmitService {
         }
     }
 
-    public UserInfo autoSubmit(User user) {
+    public Map<String, Object> autoSubmit(User user) {
         String token = getToken(user);
         if (token != null){
             HttpHeaders headers = new HttpHeaders();
@@ -63,7 +66,10 @@ public class AutoSubmitService {
             HttpEntity<Object> requestSave =  new HttpEntity<>(userInfo, headers);
             ResponseEntity<String> responseEntity = restTemplate.exchange("https://stu.eurasia.edu/yqsb/jkdj/save", HttpMethod.POST, requestSave, String.class, userInfo);
             LOGGER.info(responseEntity.toString());
-            return userInfo;
+            Map<String, Object> map = new HashMap<>(2);
+            map.put("userInfo", userInfo);
+            map.put("code", responseEntity.getBody());
+            return map;
         }else {
             return null;
         }
