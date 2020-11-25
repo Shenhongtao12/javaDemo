@@ -88,7 +88,10 @@ public class UserService {
      */
     @Scheduled(cron = "10 1 1 * * ?")
     public void autoSubmit()  {
-        List<User> users = userMapper.selectAll();
+        Example example = new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andLike("username", "17%");
+        List<User> users = userMapper.selectByExample(example);
         // 自己打卡的   密码修改了的  失败的
         int i = 0, j = 0, k = 0, m = 0;
         List<String> fail = new ArrayList<>();
@@ -161,7 +164,7 @@ public class UserService {
     public void sendAdminEmail(int sum, int m, List<String> member, int i, List<String> done, int j, List<String> password, int k, List<String> fail) {
         String REGISTER_SUBJECT = "Eurasia健康日报填写平台";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String REGISTER_MSG = "今日总人数: " + sum + "\n不选择自动打卡的人数: " + m + " " + member.toString() + "\n自己完成打卡的人数: " + i + " " + done.toString() + "\n修改密码导致打卡失败人数: " + j + " " + password.toString() +  "\n打卡失败人数: " + k + " " + fail.toString();
+        String REGISTER_MSG = "今日17级总人数: " + sum + "\n选择不自动打卡的人数: " + m + " " + member.toString() + "\n自己完成打卡的人数: " + i + " " + done.toString() + "\n修改密码导致打卡失败人数: " + j + " " + password.toString() +  "\n打卡失败人数: " + k + " " + fail.toString();
         EmailUtils.sendEmailCode(this.EMAIL_HOST_NAME, this.EMAIL_FORM_MAIL, this.EMAIL_FORM_NAME, this.EMAIL_AUTHENTICATION_USERNAME, this.EMAIL_AUTHENTICATION_PASSWORD, "shenhongtao12@aliyun.com", REGISTER_SUBJECT, REGISTER_MSG);
         EmailUtils.sendEmailCode(this.EMAIL_HOST_NAME, this.EMAIL_FORM_MAIL, this.EMAIL_FORM_NAME, this.EMAIL_AUTHENTICATION_USERNAME, this.EMAIL_AUTHENTICATION_PASSWORD, "785820791@qq.com", REGISTER_SUBJECT, REGISTER_MSG);
     }

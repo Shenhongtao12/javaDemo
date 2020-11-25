@@ -3,13 +3,16 @@ package com.sht.autosubmit;
 import com.alibaba.fastjson.JSONObject;
 import com.sht.autosubmit.entity.User;
 import com.sht.autosubmit.entity.UserInfo;
+import com.sht.autosubmit.mapper.UserMapper;
 import com.sht.autosubmit.service.AutoSubmitService;
 import com.sht.autosubmit.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
+import java.util.List;
 
 @SpringBootTest(classes = AutosubmitApplication.class)
 class AutosubmitApplicationTests {
@@ -18,6 +21,8 @@ class AutosubmitApplicationTests {
     private AutoSubmitService autoSubmitService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserMapper userMapper;
 
     @Test
     public void autoSubmit() throws Exception {
@@ -31,6 +36,16 @@ class AutosubmitApplicationTests {
         user.setUsername("17610903150644");
         userService.sendRegisterEmailCode(user, "成功");
         System.out.println(new Date());
+    }
+
+    @Test
+    public void testEm() {
+        Example example = new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andLike("username", "17%");
+        List<User> users = userMapper.selectByExample(example);
+        System.out.println(users);
+        System.out.println(users.size());
     }
 
     @Test
