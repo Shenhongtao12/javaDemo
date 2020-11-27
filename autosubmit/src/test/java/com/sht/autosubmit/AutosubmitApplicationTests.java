@@ -42,10 +42,14 @@ class AutosubmitApplicationTests {
     public void testEm() {
         Example example = new Example(User.class);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andLike("username", "17%");
+        criteria.andNotLike("username", "17%");
         List<User> users = userMapper.selectByExample(example);
-        System.out.println(users);
-        System.out.println(users.size());
+        for (User user : users) {
+            user.setMember(false);
+            userMapper.updateByPrimaryKeySelective(user);
+        }
+       /* System.out.println(users);
+        System.out.println(users.size());*/
     }
 
     @Test

@@ -86,12 +86,9 @@ public class UserService {
     /**
      * 定时Job
      */
-    @Scheduled(cron = "10 1 1 * * ?")
+    @Scheduled(cron = "10 30 0 * * ?")
     public void autoSubmit()  {
-        Example example = new Example(User.class);
-        Example.Criteria criteria = example.createCriteria();
-        criteria.andLike("username", "17%");
-        List<User> users = userMapper.selectByExample(example);
+        List<User> users = userMapper.selectAll();
         // 自己打卡的   密码修改了的  失败的
         int i = 0, j = 0, k = 0, m = 0;
         List<String> fail = new ArrayList<>();
@@ -143,7 +140,7 @@ public class UserService {
         sendAdminEmail(users.size(), m, member, i, done, j, password, k, fail);
     }
 
-    @Scheduled(cron = "10 1 02 * * ?")
+    @Scheduled(cron = "10 1 09 * * ?")
     public void changeFlag() {
         List<User> users = userMapper.selectAll();
         for (User user : users) {
