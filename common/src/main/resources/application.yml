@@ -1,0 +1,24 @@
+#Email配置
+email:
+  host-name: smtp.163.com  #服务地址，可以直接在web端登录，找到smtp服务看到，163邮箱默认开放25端口，可暂时不设置
+  authentication:
+    username: shenhongtao_12
+    password: sht851955 #手动的设置令牌
+  form:
+    mail: shenhongtao_12@163.com #发送方，必须为你设置的username一致
+  charset: UTF-8 #编码格式，一般设置为UTF-8
+server:
+  port: 443
+  ssl:
+    key-store: 3831113_eurasia.plus.pfx
+    key-store-password: fdfvPR4Q
+database:
+  url: jdbc:mysql://47.98.128.88:3306/common?useUnicode=true&characterEncoding=utf-8&useSSL=false
+  username: root
+  password: kindy0916
+spring:
+  datasource:
+    url: ${database.url}
+    username: ${database.username}
+    password: ${database.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
