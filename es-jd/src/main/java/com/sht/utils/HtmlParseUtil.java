@@ -19,11 +19,11 @@ import java.util.List;
 public class HtmlParseUtil {
 
     public static void main(String[] args) throws Exception {
-        new HtmlParseUtil().parseJd("java").forEach(System.out::println);
+        new HtmlParseUtil().parseJd("马丁靴").forEach(System.out::println);
 
     }
 
-    public List<Content> parseJd(String keyword) throws Exception {
+    public static List<Content> parseJd(String keyword) throws Exception {
         //获取请求 https://search.jd.com/Search?keyword=java
         String url = "https://search.jd.com/Search?keyword=" + keyword;
         // 解析网页(返回的就是浏览器Document的对象)
@@ -40,7 +40,8 @@ public class HtmlParseUtil {
             String img = el.getElementsByTag("img").eq(0).attr("data-lazy-img");
             String price = el.getElementsByClass("p-price").eq(0).text();
             String title = el.getElementsByClass("p-name").eq(0).text();
-           goodsList.add(new Content(title, price, img));
+            String brand = el.getElementsByClass("p-shop").eq(0).text();
+           goodsList.add(new Content(title, price, img, brand));
 
         }
         return goodsList;

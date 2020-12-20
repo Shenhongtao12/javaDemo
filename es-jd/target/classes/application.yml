@@ -1,3 +1,3 @@
 spring:
   thymeleaf:
-    cache: false  #ï¿½Ø±ï¿½thymeleafï¿½ï¿½ï¿½ï¿½
+    cache: false  #¹Ø±Õthymeleaf»º´æ

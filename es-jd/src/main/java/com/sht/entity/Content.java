@@ -1,19 +1,20 @@
 package com.sht.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * @author Aaron
  * @date 2020/11/2 23:28
  */
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Content {
 
     private String title;
     private String price;
-    private String img;
+    private String images;
+    private String brand;
 }
