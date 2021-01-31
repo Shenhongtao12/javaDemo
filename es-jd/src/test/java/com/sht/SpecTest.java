@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 //@SpringBootTest
-class EsJdApplicationTests {
+class SpecTest {
 
     @Autowired
     private RestHighLevelClient restHighLevelClient;
@@ -33,7 +33,7 @@ class EsJdApplicationTests {
     @Test
     public void CallApi() throws Exception {
         RestTemplate restTemplate = new RestTemplate();
-        List<Content> contents = HtmlParseUtil.parseJd("阿迪达斯椰子");
+        List<Content> contents = HtmlParseUtil.parseJd("机器人");
         for (int i = 0; i < contents.size(); i++) {
 
             Content content = contents.get(i);
@@ -50,14 +50,16 @@ class EsJdApplicationTests {
                 content.setImages(Url);
                 System.out.println(content);
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("title", content.getTitle());
-                jsonObject.put("price", content.getPrice().substring(1, Math.min(content.getPrice().length(), 7)));
+                jsonObject.put("name", content.getTitle().substring(0, 30));
+                jsonObject.put("intro", content.getTitle());
+                jsonObject.put("price1", content.getPrice().substring(1, Math.min(content.getPrice().length(), 7)));
                 jsonObject.put("images", content.getImages());
-                jsonObject.put("brand", content.getBrand());
-                jsonObject.put("shelf", true);
-                jsonObject.put("inventory", 99);
+                jsonObject.put("state", 0);
+                jsonObject.put("classify2_id", 2);
+                jsonObject.put("userid", 3);
+                jsonObject.put("weixin", "eurasia.plus");
                 //System.out.println(jsonObject.toString());
-                restTemplate.postForEntity("http://localhost:8086/api/goods", jsonObject, String.class);
+                restTemplate.postForEntity("http://localhost:8086/api/goods/add", jsonObject, String.class);
             }
         }
 

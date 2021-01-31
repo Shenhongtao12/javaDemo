@@ -44,7 +44,7 @@ public class KafkaTest {
         kafkaTemplate.send("topic.quick.demo", jsonString);
 
         //休眠5秒，为了使监听器有足够的时间监听到topic的数据
-        //Thread.sleep(5000);
+        Thread.sleep(5000);
     }
 
     @Test
