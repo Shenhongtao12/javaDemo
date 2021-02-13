@@ -105,4 +105,13 @@ public class UserController {
         return ResponseEntity.ok(jsonObject);
     }
 
+    @GetMapping("autoSubmit")
+    public ResponseEntity<JSONObject> autoSubmit() {
+        userService.autoSubmit();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code", 200);
+        jsonObject.put("msg", "打卡成功，具体请查看邮件");
+        return ResponseEntity.ok(jsonObject);
+    }
+
 }

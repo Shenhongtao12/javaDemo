@@ -33,7 +33,7 @@ class EsJdApplicationTests {
     @Test
     public void CallApi() throws Exception {
         RestTemplate restTemplate = new RestTemplate();
-        List<Content> contents = HtmlParseUtil.parseJd("阿迪达斯椰子");
+        List<Content> contents = HtmlParseUtil.parseJd("三叶草");
         for (int i = 0; i < contents.size(); i++) {
 
             Content content = contents.get(i);

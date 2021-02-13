@@ -20,11 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="201e47dc-1bba-4ab2-81f6-5460cea9b753" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/sht/SpecTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../thread/src/main/juc/concurrent/MapTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/sht/EsJdApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/sht/EsJdApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../es/src/test/java/com/example/es/KafkaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../es/src/test/java/com/example/es/KafkaTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +166,7 @@
       <workItem from="1608384905778" duration="9848000" />
       <workItem from="1608434855227" duration="1091000" />
       <workItem from="1609587327833" duration="5456000" />
-      <workItem from="1612069245369" duration="1179000" />
+      <workItem from="1612069245369" duration="2322000" />
     </task>
     <task id="LOCAL-00001" summary="add shoes-boot">
       <created>1608435929968</created>
@@ -178,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608435929968</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="update">
+      <created>1612070719337</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1612070719337</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +202,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add shoes-boot" />
-    <option name="LAST_COMMIT_MESSAGE" value="add shoes-boot" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="WindowStateProjectService">
     <state x="549" y="175" key="FileChooserDialogImpl" timestamp="1612070463999">
@@ -206,22 +211,22 @@
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1604585066081" />
     <state x="549" y="175" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1612070463999" />
-    <state width="1493" height="398" key="GridCell.Tab.0.bottom" timestamp="1612070669215">
+    <state width="1493" height="398" key="GridCell.Tab.0.bottom" timestamp="1612072741662">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="398" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1612070669215" />
-    <state width="1493" height="398" key="GridCell.Tab.0.center" timestamp="1612070669215">
+    <state width="1493" height="398" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1612072741662" />
+    <state width="1493" height="398" key="GridCell.Tab.0.center" timestamp="1612072741662">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="398" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1612070669215" />
-    <state width="1493" height="398" key="GridCell.Tab.0.left" timestamp="1612070669215">
+    <state width="1493" height="398" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1612072741662" />
+    <state width="1493" height="398" key="GridCell.Tab.0.left" timestamp="1612072741662">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="398" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1612070669215" />
-    <state width="1493" height="398" key="GridCell.Tab.0.right" timestamp="1612070669215">
+    <state width="1493" height="398" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1612072741662" />
+    <state width="1493" height="398" key="GridCell.Tab.0.right" timestamp="1612072741662">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="398" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1612070669215" />
+    <state width="1493" height="398" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1612072741662" />
     <state width="1493" height="318" key="GridCell.Tab.1.bottom" timestamp="1609594723043">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -242,10 +247,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1604495578864" />
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1608435936552">
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2" timestamp="1612070725959">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1608435936552" />
+    <state x="361" y="165" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1612070725959" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
