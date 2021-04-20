@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
  * @author Aaron
  * @date 2020/11/21 21:54
  */
+@Configuration
 public class WebConfig {
     @Bean
     public WebServerFactoryCustomizer<ConfigurableWebServerFactory> containerCustomizer() {
