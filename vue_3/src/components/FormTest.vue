@@ -24,7 +24,7 @@
         <el-button type="primary" @click="submitForm('formLabelAlign')"
           >立即创建</el-button
         >
-        <el-button @click="resetForm('formLabelAlign')">重置</el-button>
+        <el-button @click="reset('formLabelAlign')">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -34,7 +34,7 @@
 import { reactive } from "vue";
 
 export default {
-  setup() {
+  setup(props, context) {
     let formLabelAlign = reactive({
       name: "",
       region: "",
@@ -42,10 +42,16 @@ export default {
     });
 
     function submitForm(formName) {
-      console.log(formLabelAlign);
+      console.log("submitForm", formLabelAlign);
     }
 
-    return { formLabelAlign, submitForm };
+    function resetForm() {
+      formLabelAlign.name = "";
+      formLabelAlign.region = "";
+      formLabelAlign.type = "";
+    }
+
+    return { formLabelAlign, submitForm, resetForm };
   },
   data() {
     return {
@@ -53,12 +59,8 @@ export default {
     };
   },
   methods: {
-    resetForm(formName) {
-      this.formLabelAlign = {
-        name: "",
-        region: "",
-        type: "",
-      };
+    reset(formName) {
+      this.resetForm();
       if (this.$refs[formName] !== undefined) {
         this.$refs[formName].resetFields();
       }

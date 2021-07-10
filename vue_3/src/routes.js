@@ -1,6 +1,7 @@
 import HelloWorld from './components/HelloWorld.vue';
 import SetUpTest from './components/SetUpTest.vue';
 import FormTest from './components/FormTest.vue';
+import Parent from './components/Parent.vue';
 
 
 const routes = [
@@ -18,6 +19,11 @@ const routes = [
     path: '/form',
     name: 'FormTest',
     component: FormTest
+    },
+    {
+    path: '/parent',
+    name: 'Parent',
+    component: Parent
     },
   ]
 
