@@ -86,8 +86,9 @@ public class UserService {
     /**
      * 定时Job
      */
-    @Scheduled(cron = "10 30 0 * * ?")
+    @Scheduled(cron = "10 30 01 * * ?")
     public void autoSubmit()  {
+        userMapper.updateFlag();
         List<User> users = userMapper.selectAll();
         // 自己打卡的   密码修改了的  失败的
         int i = 0, j = 0, k = 0, m = 0;
@@ -140,13 +141,14 @@ public class UserService {
         sendAdminEmail(users.size(), m, member, i, done, j, password, k, fail);
     }
 
-    @Scheduled(cron = "10 1 09 * * ?")
+    @Scheduled(cron = "10 1 06 * * ?")
     public void changeFlag() {
-        List<User> users = userMapper.selectAll();
+        /*List<User> users = userMapper.selectAll();
         for (User user : users) {
             user.setFlag(false);
             userMapper.updateByPrimaryKey(user);
-        }
+        }*/
+        userMapper.updateFlag();
     }
 
 
