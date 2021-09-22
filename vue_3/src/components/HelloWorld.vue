@@ -4,20 +4,16 @@
   <el-button type="primary" @click="state.count++">count is: {{ state.count }}</el-button>
 
   <router-link to="/setup">setup</router-link>
-  
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
-
+import { reactive, ref } from "vue";
 
 defineProps({
-  msg: String
-})
+  msg: String,
+});
 
-const state = reactive({ count: 0 })
-
-
+const state = reactive({ count: 0 });
 </script>
 
 <style scoped>
