@@ -4,11 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	
     <groupId>com.aaron</groupId>
-    <artifactId>zookeep-dubbo-demo</artifactId>
+    <artifactId>zookeeper-dubbo-demo</artifactId>
     <version>1.0.0</version>
-
-    <name>zookeep-dubbo-demo</name>
-    <description>zookeep-dubbo-demo</description>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.2</version>
+        <relativePath/>
+    </parent>
+    <name>zookeeper-dubbo-demo</name>
+    <description>zookeeper-dubbo-demo</description>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,7 +21,7 @@
         <java.version>11</java.version>
         <swagger.version>3.0.3</swagger.version>
         <fastjson.version>2.0.4</fastjson.version>
-        <dubbo-boot.version>2.7.15</dubbo-boot.version>
+        <dubbo-boot.version>3.1.1-SNAPSHOT</dubbo-boot.version>
         <zkclient.version>5.2.1</zkclient.version>
     </properties>
 	
@@ -56,26 +61,20 @@
             <!-- apache 官方 3.0 starter依赖 -->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <artifactId>dubbo</artifactId>
                 <version>${dubbo-boot.version}</version>
             </dependency>
 
             <!-- zookeeper客户端  只需引入此依赖curator-framework curator-recipes 都有 -->
             <dependency>
                 <groupId>org.apache.curator</groupId>
-                <artifactId>curator-x-discovery</artifactId>
+                <artifactId>apache-curator</artifactId>
                 <version>${zkclient.version}</version>
             </dependency>
 
         </dependencies>
 
     </dependencyManagement>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.2</version>
-    </parent>
 
     <modules>
         <module>common</module>
@@ -97,5 +96,30 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>
