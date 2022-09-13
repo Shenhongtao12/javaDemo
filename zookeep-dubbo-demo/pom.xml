@@ -21,11 +21,10 @@
         <java.version>11</java.version>
         <swagger.version>3.0.3</swagger.version>
         <fastjson.version>2.0.4</fastjson.version>
-        <dubbo-boot.version>3.1.1-SNAPSHOT</dubbo-boot.version>
-        <zkclient.version>5.2.1</zkclient.version>
+        <dubbo.version>3.0.8</dubbo.version>
     </properties>
 	
-    <!-- 依赖声明 -->
+    <!-- 依赖全局声明 -->
     <dependencyManagement>
         <dependencies>
 
@@ -58,36 +57,61 @@
                 <version>${fastjson.version}</version>
             </dependency>
 
-            <!-- apache 官方 3.0 starter依赖 -->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo</artifactId>
-                <version>${dubbo-boot.version}</version>
+                <version>${dubbo.version}</version>
             </dependency>
-
-            <!-- zookeeper客户端  只需引入此依赖curator-framework curator-recipes 都有 -->
+            <!-- This dependency helps to introduce Curator and Zookeeper dependencies that are necessary for Dubbo to work with zookeeper as transitive dependencies  -->
             <dependency>
-                <groupId>org.apache.curator</groupId>
-                <artifactId>apache-curator</artifactId>
-                <version>${zkclient.version}</version>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-dependencies-zookeeper</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
             </dependency>
 
         </dependencies>
 
     </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-dependencies-zookeeper</artifactId>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <modules>
         <module>common</module>
         <module>provider</module>
     </modules>
-    <packaging>pom</packaging>
+    <packaging>Jar</packaging>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.7.0</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -96,30 +120,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>public</id>
-            <name>aliyun nexus</name>
-            <url>https://maven.aliyun.com/repository/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>public</id>
-            <name>aliyun nexus</name>
-            <url>https://maven.aliyun.com/repository/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 
 </project>
