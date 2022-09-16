@@ -1,10 +1,20 @@
 server:
-  port: 8081
+  port: 8082
 
 spring:
   application:
     name: springboot-dubbo-consumer
 
 dubbo:
+  application:
+    name: dubbo-springboot-demo-consumer
+  protocol:
+    name: dubbo
+    port: 20887
   registry:
-    address: zookeeper://localhost:2181
+    id: zk-registry
+    address: zookeeper://127.0.0.1:2181
+  config-center:
+    address: zookeeper://127.0.0.1:2181
+  metadata-report:
+    address: zookeeper://127.0.0.1:2181

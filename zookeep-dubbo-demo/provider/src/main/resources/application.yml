@@ -10,7 +10,7 @@ dubbo:
     name: dubbo-springboot-demo-provider
   protocol:
     name: dubbo
-    port: -1
+    port: 20887
   registry:
     id: zk-registry
     address: zookeeper://127.0.0.1:2181

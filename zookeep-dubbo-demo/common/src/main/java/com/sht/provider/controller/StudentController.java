@@ -3,6 +3,7 @@ package com.sht.provider.controller;
 import com.sht.serviceInterface.service.IUserService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,11 +19,10 @@ public class StudentController {
 
 
 
-    @GetMapping(value = "/student")
+    @GetMapping(value = "/student/{name}")
     @ResponseBody
-    public Object studentCount(){
+    public Object studentCount(@PathVariable String name){
         String str = userService.getUser();
-
-        return "学生的 ："+str;
+        return "学生的 ："+str + " nick name : " + name;
     }
 }
