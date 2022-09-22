@@ -1,0 +1,29 @@
+server:
+  port: 8088
+
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: nacos-test
+  profiles:
+    # 环境配置
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 127.0.0.1:8848
+      config:
+        # 配置中心地址
+        server-addr: 127.0.0.1:8848
+        # 配置文件格式
+        file-extension: yml
+        namespace: 9090c79b-6c77-49f0-9083-58043fdfc68b
+
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848
+    file-extension: yml
+    namespace: 9090c79b-6c77-49f0-9083-58043fdfc68b
+
