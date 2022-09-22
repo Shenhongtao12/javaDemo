@@ -23,11 +23,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>com.alibaba.boot</groupId>
             <artifactId>nacos-config-spring-boot-starter</artifactId>
             <version>0.2.12</version>
-        </dependency>
+        </dependency>-->
 
          <!--SpringCloud Alibaba Nacos-->
         <!--<dependency>
@@ -37,11 +37,19 @@
         </dependency>-->
 
         <!-- SpringCloud Alibaba Nacos Config -->
-        <!--<dependency>
+        <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
             <version>2021.0.1.0</version>
-        </dependency>-->
+        </dependency>
+
+        <!--引入nacos时，必须还得引入spring-cloud-->
+        <!-- bootstrap 启动器 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>3.1.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -20,10 +20,12 @@ spring:
         # 配置文件格式
         file-extension: yml
         namespace: 9090c79b-6c77-49f0-9083-58043fdfc68b
+        group: DEFAULT_GROUP
 
-nacos:
-  config:
-    server-addr: 127.0.0.1:8848
-    file-extension: yml
-    namespace: 9090c79b-6c77-49f0-9083-58043fdfc68b
+
+#nacos:
+#  config:
+#    server-addr: 127.0.0.1:8848
+#    file-extension: yml
+#    namespace: 9090c79b-6c77-49f0-9083-58043fdfc68b
 
