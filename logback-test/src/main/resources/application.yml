@@ -1,0 +1,13 @@
+server:
+  port: 8000
+
+spring:
+  profiles:
+    active:
+      - dev
+appsetting:
+  logMode: k8s
+
+eventhub:
+  setting:
+    enable: true
