@@ -3,8 +3,10 @@ package com.sht.logback.domain;
 import com.sht.logback.excel.Excel;
 import com.sht.logback.excel.Excels;
 import lombok.Data;
+import org.apache.poi.ss.usermodel.IndexedColors;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,7 +18,7 @@ import java.util.List;
 public class User {
 	@Excel(name = "ID")
 	private Long id;
-	@Excel(name = "用户名")
+	@Excel(name = "用户名", width = 30)
 	private String username;
 	@Excel(name = "昵称")
 	private String nickname;
@@ -26,10 +28,10 @@ public class User {
 	private Integer age;
 	private Boolean ex;
 
-	@Excel(name = "时间", dateFormat = "yyyy-MM-dd HH:mm:ss")
+	@Excel(name = "时间", dateFormat = "yyyy-MM-dd HH:mm:ss", width = 20)
 	private LocalDateTime inDate;
 
-	@Excel(name = "价钱", prompt = "aabbc")
+	@Excel(name = "价钱", prompt = "aabbc", scale=2, roundingMode= RoundingMode.HALF_UP, isStatistics=true, color=IndexedColors.RED1)
 	private BigDecimal price;
 
 	@Excels({

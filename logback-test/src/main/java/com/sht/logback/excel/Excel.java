@@ -153,6 +153,9 @@ public @interface Excel
 
     public enum Type
     {
+        /**
+         * 导出导入
+         */
         ALL(0), EXPORT(1), IMPORT(2);
         private final int value;
 
