@@ -11,3 +11,6 @@ appsetting:
 eventhub:
   setting:
     enable: true
+
+logback:
+  home: /test/logback

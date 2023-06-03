@@ -2,6 +2,8 @@
 <configuration>
     <!-- 日志存放路径 -->
     <!--根据当前配置环境决定日志存放目录-->
+    <springProperty scope="context" name="LOG_HOME" source="logback.home"/>
+
     <springProfile name="!dev">
         <property name="log.path" value="/home/logback-test/logs" />
         <property name="log.pattern" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - %msg%n" />
@@ -11,8 +13,6 @@
         <!-- 日志输出格式 -->
         <property name="log.pattern" value="%yellow(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %logger{36} %cyan(%msg%n)"/>
     </springProfile>
-
-
 
     <!-- 获取yml中的log地址 -->
     <springProperty scope="context" name="logMode" source="appsettings.logMode" defaultValue="k8s"/>

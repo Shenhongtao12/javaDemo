@@ -251,7 +251,7 @@ public class ExcelUtil<T>
                     Object val = this.getCellValue(row, entry.getKey());
 
                     // 如果不存在实例则新建.
-                    entity = (entity == null ? clazz.newInstance() : entity);
+                    entity = (entity == null ? clazz.getDeclaredConstructor().newInstance() : entity);
                     // 从map中得到对应列的field.
                     Field field = (Field) entry.getValue()[0];
                     Excel attr = (Excel) entry.getValue()[1];
