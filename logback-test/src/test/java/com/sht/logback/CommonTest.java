@@ -37,6 +37,8 @@ public class CommonTest {
 
 	@Test
 	public void test() {
+		int a = 11/ 3;
+		System.out.println(a);
 		double i = 2.0/7;
 		System.out.println(i);
 //		Timestamp timestamp = new Timestamp(System.currentTimeMillis() + 0 * 1000);
@@ -46,10 +48,11 @@ public class CommonTest {
 
 	@Test
 	public void stringTest() {
-		String str = new String("123");
-		System.out.println(str);
-		formatString(str);
-		System.out.println(str);
+		String str = new String("123456");
+		System.out.println(str.substring(0, 3));
+//		System.out.println(str);
+//		formatString(str);
+//		System.out.println(str);
 	}
 
 	@Test

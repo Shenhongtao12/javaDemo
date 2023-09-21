@@ -20,7 +20,6 @@ public class StudentController {
 
 
     @GetMapping(value = "/student/{name}")
-    @ResponseBody
     public Object studentCount(@PathVariable String name){
         String str = userService.getUser();
         return "学生的 ："+str + " nick name : " + name;

@@ -14,3 +14,23 @@ eventhub:
 
 logback:
   home: /test/logback
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+#  endpoint:
+#    health:
+#      roles: admin
+#    info:
+#      roles: admin
+#    configprops:
+#      roles: admin
+#    env:
+#      roles: aadmin
+#    logfile:
+#      roles: admin
+#    threaddump:
+#      roles: admin
+#    metrics:
+#      roles: admin
